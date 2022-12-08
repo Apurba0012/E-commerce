@@ -127,3 +127,19 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#smtp server configaration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pythondjango05@gmail.com'
+#Must generate specific password for your app in [gmail settings][1]
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 587
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
