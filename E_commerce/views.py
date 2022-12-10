@@ -152,6 +152,8 @@ def CheckOut(request):
         return redirect("index")
     return HttpResponse("checkout")
 
+
+@login_required(login_url="/accounts/login/")
 def Your_Order(request):
     uid = request.session.get('_auth_user_id')
     user = User.objects.get(pk=uid)
