@@ -47,5 +47,7 @@ urlpatterns = [
     path('product/<str:id>',views.Product_Detail,name="product_detail"),# server e id pass kori
     #search
     path('search/',views.Search,name="search"),
+    #info
+    path('info/',views.Info,name="info"),
 
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)  #load image

@@ -202,6 +202,8 @@ def Search(request):
     }
     return render(request, 'search.html',context)
 
+def Info(request):
+    return render(request,'info.html')
 
 
 
