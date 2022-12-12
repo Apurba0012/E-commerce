@@ -40,6 +40,7 @@ class Products(models.Model):
     sub_category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE,null=True)
     Availability = models.CharField(choices=Availability,null=True,max_length=150)
+    details = models.TextField(null=True)
 
     def __str__(self):
         return self.name
@@ -50,13 +51,15 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username','email','password1','password2')
+        fields = ('username','first_name','last_name','email','password1','password2')
 
     #placeholder
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs['placeholder'] = 'User Name'
+        self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
         self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
@@ -99,6 +102,9 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product
+
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 

@@ -1,13 +1,15 @@
 from django.shortcuts import render,redirect,HttpResponse
-from app.models import Category,Products,Contact_us,Order,Brand
+from app.models import Category,Products,Contact_us,Order,Brand,Profile
 
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,update_session_auth_hash
 from app.models import UserCreateForm
 
 # add to cart
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 
 def master(request):
     return render(request, 'master.html')
@@ -39,7 +41,7 @@ def index(request):
 
 
 def signup(request):
-    if request.method == 'POST':
+    if request.method == 'POST':    #post method use transfer data from client to server
         form = UserCreateForm(request.POST)
         if form.is_valid():
             new_user = form.save()
@@ -50,7 +52,7 @@ def signup(request):
             )
             login(request,new_user)
             return redirect('index')
-    else:
+    else:                              #Method GET include all data for action like query
         form = UserCreateForm()
 
     context = {
@@ -206,6 +208,32 @@ def Search(request):
 
 def Info(request):
     return render(request,'info.html')
+
+@login_required(login_url="/accounts/login/")
+def Your_Profile(request):
+    return render(request,'profile.html')
+
+'''def UpdatePassword(request):
+    if request.method=='POST':
+        form = PasswordChangeForm(data=request.POST,user=request.user)
+        if form.is_valid():
+            update_session_auth_hash(request,form.user)   #kon user er password hash change
+            return redirect('index')
+    else:
+        form=PasswordChangeForm(user=request.user)
+
+    context = {
+        'form': form
+        }
+    return render(request,'change_pass.html',context)'''
+
+
+
+
+
+
+
+
 
 
 

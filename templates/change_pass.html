@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="col-sm-4 col-sm-offset-1">
                    <div class="signup-form"><!--login form-->
-						<h2>Login To Your Account</h2>
+						<h2>Update To Your Account Password</h2>
 						<form method="post">
                             {% csrf_token %}
                             {% for field in form %}
@@ -12,10 +12,10 @@
                             <label>{{field.label_tag}}</label>
                             <p>{{ field }}</p>
                             {% endfor %}
-                            <a href ="{% url 'password_reset' %}" style="float:right">Forgot Password ?</a><br>
 
-                            <button class ="btn btn-default" type="submit">Login</button>
-                            <a href="{% url 'signup' %}"><span style ="color:green;margin-left:122px;">Create Your Account&nbsp;&rarr;</span></a>
+
+                            <button class ="btn btn-default" type="submit">Change Password</button>
+
                         </form>
                    </div>
             </div>

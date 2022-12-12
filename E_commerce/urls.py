@@ -49,5 +49,8 @@ urlpatterns = [
     path('search/',views.Search,name="search"),
     #info
     path('info/',views.Info,name="info"),
+    #profile
+    path('profile/',views.Your_Profile,name="profile"),
+
 
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)  #load image
